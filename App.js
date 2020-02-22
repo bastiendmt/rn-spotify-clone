@@ -1,27 +1,36 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import Playlist from "./screens/PlaylistDetail";
+import {ScrollView, StyleSheet, Text, View, FlatList} from 'react-native';
 import GetPlaylists from './API';
+import data from './data';
+import PlaylistItem from "./components/PlaylistItem";
 
 export default function App() {
-    
-    GetPlaylists().then((data) => {
-        console.log(data)
-    });
+
+    // GetPlaylists().then((data) => {
+    //     console.log(data)
+    // });
 
 
     return (
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
             <Text style={styles.title}>Editor's picks</Text>
-            <Playlist></Playlist>
-        </ScrollView>
+            <FlatList
+
+                data = {data}
+                keyExtractor={(item) => item.id.toString()}
+                renderItem={({item}) => <Text>{item.name}</Text>}
+
+                // renderItem={((item) => <PlaylistItem playlist={item}/>)}
+            />
+
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: '#cFc',
         // alignItems: 'center',
         // justifyContent: 'center',
     },
