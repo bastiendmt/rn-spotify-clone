@@ -1,19 +1,33 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import Playlist from "./screens/PlaylistDetail";
+import GetPlaylists from './API';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
+    
+    GetPlaylists().then((data) => {
+        console.log(data)
+    });
+
+
+    return (
+        <ScrollView style={styles.container}>
+            <Text style={styles.title}>Editor's picks</Text>
+            <Playlist></Playlist>
+        </ScrollView>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#000',
+        // alignItems: 'center',
+        // justifyContent: 'center',
+    },
+    title: {
+        marginTop: '20%',
+        color: '#fff',
+        fontSize: 32
+    }
 });
