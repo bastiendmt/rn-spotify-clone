@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 
-export default class Playlist extends Component {
+export default class PlaylistItem extends Component {
+
 
     render() {
+        const playlist = this.props.playlist;
         return (
             <TouchableOpacity style={styles.item}>
-                <Text>This is a playlist</Text>
+                <Text>{playlist.name}</Text>
             </TouchableOpacity>
         )
     }
