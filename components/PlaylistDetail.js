@@ -1,6 +1,7 @@
 import React from 'react';
 import {FlatList, StyleSheet, Text, View, Image} from "react-native";
 import {GetPlaylistDetail} from '../API'
+import SongItem from './SongItem'
 
 export default class Playlist extends React.Component {
     constructor(props) {
@@ -17,8 +18,7 @@ export default class Playlist extends React.Component {
     }
 
     displayPlaylistDetail() {
-        if (this.state.playlist != undefined ) {
-            console.log(this.state.playlist.images[0].url);
+        if (this.state.playlist != undefined) {
             return (
                 <View style={styles.header}>
                     <View style={styles.imageContainer}>
@@ -38,8 +38,15 @@ export default class Playlist extends React.Component {
         }
     }
 
-    displaySongs(){
-
+    displaySongs() {
+        if (this.state.playlist != undefined) {
+            console.log(this.state.playlist.tracks.items);
+            return (
+                this.state.playlist.tracks.items.map((item) => (
+                    <SongItem song={item}/>
+                ))
+            )
+        }
     }
 
 
@@ -48,6 +55,7 @@ export default class Playlist extends React.Component {
         return (
             <View style={styles.container}>
                 {this.displayPlaylistDetail()}
+                {this.displaySongs()}
             </View>
         );
     }
@@ -61,10 +69,10 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row'
     },
-    image : {
-        margin : 5,
-        width : 100,
-        height : 100,
+    image: {
+        margin: 5,
+        width: 100,
+        height: 100,
     },
     imageContainer: {
         flex: 4,
@@ -73,8 +81,8 @@ const styles = StyleSheet.create({
         flex: 8,
         flexDirection: 'column'
     },
-    description : {
-        marginTop : 10
+    description: {
+        marginTop: 10
     },
     title: {
         fontSize: 24,
