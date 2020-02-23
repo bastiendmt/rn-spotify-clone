@@ -5,11 +5,14 @@ export default class PlaylistItem extends Component {
 
 
     render() {
-        const playlist = this.props.playlist;
+        const {playlist, displayPlaylist} = this.props
         return (
-            <TouchableOpacity style={styles.item}>
+            <TouchableOpacity
+                style={styles.item}
+                onPress={() => displayPlaylist(playlist.id)}
+            >
                 <Image
-                    source={{uri:playlist.images[0].url}}
+                    source={{uri: playlist.images[0].url}}
                     style={styles.image}
                 />
             </TouchableOpacity>
@@ -19,11 +22,11 @@ export default class PlaylistItem extends Component {
 
 const styles = StyleSheet.create({
     item: {
-        width : 150,
+        width: 150,
         height: 150,
-        margin : 10
+        margin: 10
     },
-    image : {
+    image: {
         width: '100%',
         height: '100%'
     }

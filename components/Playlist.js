@@ -23,6 +23,10 @@ export default class Playlist extends React.Component {
         this.loadPlaylist()
     }
 
+    displayPlaylist = (idPlaylist) => {
+        console.log(idPlaylist);
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -33,7 +37,7 @@ export default class Playlist extends React.Component {
                         style={styles.listItem}
                         numColumns={2}
                         keyExtractor={(item) => item.id.toString()}
-                        renderItem={({item}) => <PlaylistItem playlist={item}></PlaylistItem>}
+                        renderItem={({item}) => <PlaylistItem playlist={item} displayPlaylist={this.displayPlaylist}/>}
                     />
 
                 </View>
@@ -46,8 +50,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#cFc',
-        // alignItems: 'center',
-        // justifyContent: 'center',
     },
     title: {
         marginTop: '20%',
@@ -55,7 +57,7 @@ const styles = StyleSheet.create({
         fontSize: 32
     },
     playlistContainer: {
-        alignItems : 'center'
+        alignItems: 'center'
     },
     listItem: {
         flexDirection: 'column'
