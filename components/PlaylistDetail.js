@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View, Image} from "react-native";
+import {FlatList, StyleSheet, Text, View, Image, ScrollView} from "react-native";
 import {GetPlaylistDetail} from '../API'
 import SongItem from './SongItem'
 
@@ -40,12 +40,15 @@ export default class Playlist extends React.Component {
 
     displaySongs() {
         if (this.state.playlist != undefined) {
-            console.log(this.state.playlist.tracks.items);
             return (
-                this.state.playlist.tracks.items.map((item) => (
-                    <SongItem song={item}/>
-                ))
+                <ScrollView>
+                    {this.state.playlist.tracks.items.map((item) => (
+                        <SongItem key={item.id} song={item}/>
+                    ))}
+                </ScrollView>
             )
+        } else {
+            return (<Text>Aucun son trouvé</Text>)
         }
     }
 

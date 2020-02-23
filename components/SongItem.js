@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {TouchableOpacity, Text, StyleSheet, Image} from 'react-native'
+import {TouchableOpacity, Text, StyleSheet} from 'react-native'
 
 export default class SongItem extends Component {
     render() {
@@ -9,8 +9,9 @@ export default class SongItem extends Component {
                 style={styles.item}
 
             >
+                {/*{song.track.preview_url != undefined}*/}
                 <Text style={styles.title}>{song.track.name}</Text>
-                <Text style={styles.artist}>artist</Text>
+                <Text style={styles.artist}>{song.track.artists[0].name}</Text>
             </TouchableOpacity>
         )
     }
@@ -21,10 +22,8 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 10
     },
-    title: {
-
-    },
-    artist : {
-        color : '#ccc'
+    title: {},
+    artist: {
+        color: '#ccc'
     }
 });
