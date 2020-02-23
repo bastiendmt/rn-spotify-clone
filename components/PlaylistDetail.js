@@ -44,7 +44,7 @@ export default class Playlist extends React.Component {
             return (
                 <ScrollView>
                     {this.state.playlist.tracks.items.map((item) => (
-                        <SongItem key={item.id} song={item}/>
+                        <SongItem key={item.track.id} song={item}/>
                     ))}
                 </ScrollView>
             )

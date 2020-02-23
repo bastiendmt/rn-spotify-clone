@@ -10,7 +10,8 @@ export default class Home extends React.Component {
         super(props);
         this.state = {
             playlists: [],
-            isPlaying: false
+            isPlaying: false,
+            songPlaying : undefined
         }
     }
 
