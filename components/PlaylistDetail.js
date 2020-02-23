@@ -67,7 +67,7 @@ export default class Playlist extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#AFA',
+        backgroundColor: '#000',
     },
     header: {
         flexDirection: 'row'
@@ -85,16 +85,18 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     description: {
+        color : '#fff',
         marginTop: 10
     },
     title: {
         fontSize: 24,
+        color : '#fff',
     },
     author: {
-        color: '#ccc'
+        color: '#999'
     },
     followers: {
-        color: '#ccc'
+        color: '#999'
     },
 
 

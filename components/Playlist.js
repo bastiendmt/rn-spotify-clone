@@ -50,7 +50,7 @@ export default class Playlist extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#cFc',
+        backgroundColor: '#000',
     },
     title: {
         marginTop: '20%',

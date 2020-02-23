@@ -22,8 +22,10 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 10
     },
-    title: {},
+    title: {
+        color : '#fff',
+    },
     artist: {
-        color: '#ccc'
+        color: '#999'
     }
 });
