@@ -12,25 +12,19 @@ export default class PlaylistItem extends Component {
                     source={{uri:playlist.images[0].url}}
                     style={styles.image}
                 />
-                <Text>{playlist.name}</Text>
             </TouchableOpacity>
         )
     }
 }
 
-
 const styles = StyleSheet.create({
     item: {
         width : 150,
         height: 150,
-        backgroundColor : '#0fC',
-        // margin : 10
-        // flex: 1,
-        // alignItems: 'center',
-        // justifyContent: 'center',
+        margin : 10
     },
     image : {
         width: '100%',
-        height: 150
+        height: '100%'
     }
 });

@@ -1,7 +1,6 @@
 import React from 'react';
 import GetPlaylists from "../API";
 import {FlatList, StyleSheet, Text, View} from "react-native";
-import data from "../data";
 import PlaylistItem from "./PlaylistItem";
 
 
@@ -32,10 +31,11 @@ export default class Playlist extends React.Component {
                     <FlatList
                         data={this.state.playlists}
                         style={styles.listItem}
+                        numColumns={2}
                         keyExtractor={(item) => item.id.toString()}
                         renderItem={({item}) => <PlaylistItem playlist={item}></PlaylistItem>}
                     />
-                    
+
                 </View>
             </View>
         );
@@ -55,11 +55,9 @@ const styles = StyleSheet.create({
         fontSize: 32
     },
     playlistContainer: {
-        flexWrap: 'wrap',
-        flex: 1,
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginTop: 30
+        alignItems : 'center'
     },
-    listItem: {}
+    listItem: {
+        flexDirection: 'column'
+    }
 });
