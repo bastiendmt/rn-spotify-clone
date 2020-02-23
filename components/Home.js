@@ -2,13 +2,15 @@ import React from 'react';
 import {GetPlaylists} from "../API";
 import {FlatList, StyleSheet, Text, View} from "react-native";
 import PlaylistItem from "./PlaylistItem";
+import PlayerItem from "./PlayerItem";
 
 
-export default class Playlist extends React.Component {
+export default class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            playlists: []
+            playlists: [],
+            isPlaying: false
         }
     }
 
@@ -38,10 +40,11 @@ export default class Playlist extends React.Component {
                         style={styles.listItem}
                         numColumns={2}
                         keyExtractor={(item) => item.id.toString()}
-                        renderItem={({item}) => <PlaylistItem playlist={item} displayPlaylist={this.displayPlaylist}/>}
+                        renderItem={({item}) => <PlaylistItem key={item.id} playlist={item} displayPlaylist={this.displayPlaylist}/>}
                     />
-
                 </View>
+
+                <PlayerItem/>
             </View>
         );
     }

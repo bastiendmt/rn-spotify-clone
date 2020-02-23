@@ -2,6 +2,7 @@ import React from 'react';
 import {FlatList, StyleSheet, Text, View, Image, ScrollView} from "react-native";
 import {GetPlaylistDetail} from '../API'
 import SongItem from './SongItem'
+import PlayerItem from './PlayerItem'
 
 export default class Playlist extends React.Component {
     constructor(props) {
@@ -57,8 +58,13 @@ export default class Playlist extends React.Component {
         const idPlaylist = this.props.route.params.idPlaylist
         return (
             <View style={styles.container}>
-                {this.displayPlaylistDetail()}
-                {this.displaySongs()}
+                <View>
+                    {this.displayPlaylistDetail()}
+                    {this.displaySongs()}
+                </View>
+                <View style={styles.playerContainer}>
+                    <PlayerItem/>
+                </View>
             </View>
         );
     }
@@ -71,6 +77,11 @@ const styles = StyleSheet.create({
     },
     header: {
         flexDirection: 'row'
+    },
+    playerContainer : {
+        position: 'absolute',
+        bottom: 0,
+        width : '100%',
     },
     image: {
         margin: 5,
@@ -85,12 +96,12 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
     description: {
-        color : '#fff',
+        color: '#fff',
         marginTop: 10
     },
     title: {
         fontSize: 24,
-        color : '#fff',
+        color: '#fff',
     },
     author: {
         color: '#999'
