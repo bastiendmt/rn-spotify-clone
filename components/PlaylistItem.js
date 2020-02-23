@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
-import {TouchableOpacity, Text, StyleSheet} from 'react-native'
-import Image from "react-native-web/dist/exports/Image";
-import {ImageBackground} from "react-native-web";
+import {TouchableOpacity, Text, StyleSheet, Image} from 'react-native'
 
 export default class PlaylistItem extends Component {
 
@@ -10,11 +8,10 @@ export default class PlaylistItem extends Component {
         const playlist = this.props.playlist;
         return (
             <TouchableOpacity style={styles.item}>
-                <ImageBackground
-                    source={playlist.images.url}
-                >
-                    <Text>{playlist.name}</Text>
-                </ImageBackground>
+                <Image
+                    source={{uri:playlist.images[0].url}}
+                    style={styles.image}
+                />
             </TouchableOpacity>
         )
     }
@@ -23,12 +20,16 @@ export default class PlaylistItem extends Component {
 
 const styles = StyleSheet.create({
     item: {
-        padding: 5,
-        width: '50%',
-        height: 50,
+        width : 150,
+        height: 150,
+        backgroundColor : '#0fC',
+        // margin : 10
         // flex: 1,
-        backgroundColor: '#0f0'
         // alignItems: 'center',
         // justifyContent: 'center',
     },
+    image : {
+        width: '100%',
+        height: 150
+    }
 });
