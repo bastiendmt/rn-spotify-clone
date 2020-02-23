@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, StyleSheet, Text, View} from "react-native";
-import GetPlaylistDetail from '../API'
+import {GetPlaylistDetail} from '../API'
 
 export default class Playlist extends React.Component {
     constructor(props) {
@@ -15,10 +15,6 @@ export default class Playlist extends React.Component {
             this.setState({playlist : data})
         });
     }
-
-
-   
-
 
 
     render() {
