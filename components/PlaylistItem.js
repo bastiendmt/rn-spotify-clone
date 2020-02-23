@@ -12,6 +12,7 @@ export default class PlaylistItem extends Component {
                     source={{uri:playlist.images[0].url}}
                     style={styles.image}
                 />
+                <Text>{playlist.name}</Text>
             </TouchableOpacity>
         )
     }
