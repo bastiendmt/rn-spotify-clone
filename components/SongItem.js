@@ -9,9 +9,8 @@ export default class SongItem extends Component {
                 style={styles.item}
 
             >
-                {/*{song.track.preview_url != undefined}*/}
-                <Text style={styles.title}>{song.track.name}</Text>
-                <Text style={styles.artist}>{song.track.artists[0].name}</Text>
+                <Text style={[song.track.preview_url ? styles.preview : styles.noPreview]}>{song.track.name}</Text>
+                <Text style={[song.track.preview_url ? styles.artist : styles.noPreview]}>{song.track.artists[0].name}</Text>
             </TouchableOpacity>
         )
     }
@@ -22,8 +21,11 @@ const styles = StyleSheet.create({
         width: '100%',
         margin: 10
     },
-    title: {
+    preview: {
         color : '#fff',
+    },
+    noPreview : {
+        color : '#555'
     },
     artist: {
         color: '#999'
