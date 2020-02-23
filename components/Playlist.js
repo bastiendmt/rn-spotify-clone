@@ -25,7 +25,8 @@ export default class Playlist extends React.Component {
 
     displayPlaylist = (idPlaylist) => {
         console.log(idPlaylist);
-    }
+        this.props.navigation.navigate("PlaylistDetail", {idPlaylist : idPlaylist})
+    };
 
     render() {
         return (
