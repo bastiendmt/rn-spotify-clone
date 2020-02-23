@@ -1,5 +1,5 @@
 import React from 'react';
-import GetPlaylists from "../API";
+import {GetPlaylists} from "../API";
 import {FlatList, StyleSheet, Text, View} from "react-native";
 import PlaylistItem from "./PlaylistItem";
 
