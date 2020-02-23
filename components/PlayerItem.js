@@ -15,7 +15,7 @@ export default class PlayerItem extends Component {
     }
 
     render() {
-        const {song, isPlaying} = this.props;
+        const {song} = this.props;
         return (
             <View style={styles.playerContainer}>
                 {/*<SongItem style={{flex : 8}}/>*/}

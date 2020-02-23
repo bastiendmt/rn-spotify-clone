@@ -28,6 +28,7 @@ export default class Playlist extends React.Component {
                             style={styles.image}
                         />
                     </View>
+
                     <View style={styles.infos}>
                         <Text style={styles.title}>{this.state.playlist.name}</Text>
                         <Text style={styles.author}>Playlist by {this.state.playlist.owner.display_name}</Text>
@@ -53,7 +54,6 @@ export default class Playlist extends React.Component {
         }
     }
 
-
     render() {
         const idPlaylist = this.props.route.params.idPlaylist
         return (
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',
     },
     header: {
+        marginTop: 50,
         flexDirection: 'row'
     },
     playerContainer : {
@@ -109,6 +110,4 @@ const styles = StyleSheet.create({
     followers: {
         color: '#999'
     },
-
-
 });

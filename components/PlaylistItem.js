@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
-import {TouchableOpacity, Text, StyleSheet, Image} from 'react-native'
+import {TouchableOpacity, StyleSheet, Image} from 'react-native'
 
 export default class PlaylistItem extends Component {
-
 
     render() {
         const {playlist, displayPlaylist} = this.props
@@ -22,8 +21,8 @@ export default class PlaylistItem extends Component {
 
 const styles = StyleSheet.create({
     item: {
-        width: 150,
-        height: 150,
+        width: 170,
+        height: 170,
         margin: 10
     },
     image: {
