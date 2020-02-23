@@ -55,7 +55,6 @@ export default class Playlist extends React.Component {
     }
 
     render() {
-        const idPlaylist = this.props.route.params.idPlaylist
         return (
             <View style={styles.container}>
                 <View>

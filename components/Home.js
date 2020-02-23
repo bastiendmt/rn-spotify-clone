@@ -9,6 +9,7 @@ export default class Home extends React.Component {
         super(props);
         this.state = {
             playlists: [],
+            isPlaying : false
         }
     }
 
@@ -20,7 +21,6 @@ export default class Home extends React.Component {
     }
 
     displayPlaylist = (idPlaylist) => {
-        console.log(idPlaylist);
         this.props.navigation.navigate("PlaylistDetail", {idPlaylist: idPlaylist})
     };
 

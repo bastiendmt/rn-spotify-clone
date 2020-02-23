@@ -10,9 +10,7 @@ export default class SongItem extends Component {
         }
 
         var disabled = false;
-        if (!song.track.preview_url) {
-            disabled = true;
-        }
+        if (!song.track.preview_url) disabled = true;
 
         return (
             <TouchableOpacity

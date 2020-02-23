@@ -18,9 +18,12 @@ export default class PlayerItem extends Component {
         const {song} = this.props;
         return (
             <View style={styles.playerContainer}>
-                {/*<SongItem style={{flex : 8}}/>*/}
+                {/*<SongItem }/>*/}
                 <Text style={styles.songContainer}>A song playing</Text>
-                <TouchableOpacity style={styles.statusContainer}>
+                <TouchableOpacity
+                    style={styles.statusContainer}
+                    onPress={() => {}}
+                >
                     {this.displaySongStatus()}
                 </TouchableOpacity>
             </View>
