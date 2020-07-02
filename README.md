@@ -11,3 +11,9 @@ Projet réalisé dans le cadre d'un entretien d'embauche
 
 `expo start`
 
+**Captures d'écran**
+*** Accueil ***
+![](images/home.png)
+
+***Playlist***
+![](images/playlist.png)
