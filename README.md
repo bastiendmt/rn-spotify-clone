@@ -1,7 +1,7 @@
 # rn-appstud-test
 Projet réalisé dans le cadre d'un entretien d'embauche
 
-**Instalation**
+## Instalation
 
 `git clone https://gitlab.com/bastienxs/RN-player.git`
 
@@ -11,9 +11,11 @@ Projet réalisé dans le cadre d'un entretien d'embauche
 
 `expo start`
 
-**Captures d'écran**
-*** Accueil ***
+## Captures d'écran
+
+### Accueil
 ![](images/home.png)
 
-***Playlist***
+
+### Playlist
 ![](images/playlist.png)
