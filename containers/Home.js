@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     },
     scrollviewContainer: {
         alignItems: 'center',
+        marginTop: 32
     },
     playlistContainer: {
         justifyContent: 'center',
@@ -78,7 +79,7 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
     },
     title: {
-        marginTop: '20%',
+        paddingTop : 32,
         color: '#fff',
         fontSize: 32
     },

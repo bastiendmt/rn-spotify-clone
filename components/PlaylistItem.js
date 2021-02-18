@@ -21,8 +21,8 @@ export default class PlaylistItem extends Component {
 
 const styles = StyleSheet.create({
     item: {
-        width: 170,
-        height: 170,
+        width: 180,
+        height: 180,
         margin: 10
     },
     image: {
