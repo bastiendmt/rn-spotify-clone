@@ -1,23 +1,23 @@
-import React, {Component} from 'react'
-import {TouchableOpacity, StyleSheet, Image} from 'react-native'
+import React from 'react'
+import { TouchableOpacity, StyleSheet, Image } from 'react-native'
 
-export default class PlaylistItem extends Component {
+const PlaylistItem = (props) => {
+    const { playlist, displayPlaylist } = props
 
-    render() {
-        const {playlist, displayPlaylist} = this.props
-        return (
-            <TouchableOpacity
-                style={styles.item}
-                onPress={() => displayPlaylist(playlist.id)}
-            >
-                <Image
-                    source={{uri: playlist.images[0].url}}
-                    style={styles.image}
-                />
-            </TouchableOpacity>
-        )
-    }
+    return (
+        <TouchableOpacity
+            style={styles.item}
+            onPress={() => displayPlaylist(playlist.id)}
+        >
+            <Image
+                source={{ uri: playlist.images[0].url }}
+                style={styles.image}
+            />
+        </TouchableOpacity>
+    )
 }
+
+export default PlaylistItem
 
 const styles = StyleSheet.create({
     item: {
