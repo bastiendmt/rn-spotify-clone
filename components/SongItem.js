@@ -8,8 +8,7 @@ const SongItem = (props) => {
         console.log("Playing song " + songUrl);
     }
 
-    let disabled = false;
-    if (!song.track.preview_url) disabled = true;
+    !song.track.preview_url ? disabled = true : disabled = false;
 
     return <TouchableOpacity
         style={styles.item}

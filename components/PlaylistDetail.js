@@ -62,7 +62,7 @@ export default class Playlist extends React.Component {
                     {this.displaySongs()}
                 </View>
                 <View style={styles.playerContainer}>
-                    <PlayerItem/>
+                    <PlayerItem />
                 </View>
             </View>
         );
