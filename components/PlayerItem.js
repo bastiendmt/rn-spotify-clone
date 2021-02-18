@@ -6,9 +6,9 @@ const PlayerItem = (props) => {
     const { song } = props;
 
     displaySongStatus = () => {
-        let sourceImage = require('../images/pause_white.png');
+        let sourceImage = require('../assets/pause_white.png');
         if (!props.isPlaying) {
-            sourceImage = require('../images/play_white.png');
+            sourceImage = require('../assets/play_white.png');
         }
         return (
             <Image source={sourceImage} style={styles.statusIcon} />
