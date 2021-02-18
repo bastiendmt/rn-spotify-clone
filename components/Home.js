@@ -1,6 +1,6 @@
 import React from 'react';
-import {GetPlaylists} from "../API";
-import {FlatList, StyleSheet, Text, View} from "react-native";
+import { GetPlaylists } from "../API";
+import { FlatList, StyleSheet, Text, View, ScrollView } from "react-native";
 import PlaylistItem from "./PlaylistItem";
 import PlayerItem from "./PlayerItem";
 
@@ -9,19 +9,19 @@ export default class Home extends React.Component {
         super(props);
         this.state = {
             playlists: [],
-            isPlaying : false
+            isPlaying: false
         }
     }
 
     loadPlaylist() {
         GetPlaylists().then(data => {
-                this.setState({playlists: data.playlists.items});
-            }
+            this.setState({ playlists: data.playlists.items });
+        }
         )
     }
 
     displayPlaylist = (idPlaylist) => {
-        this.props.navigation.navigate("PlaylistDetail", {idPlaylist: idPlaylist})
+        this.props.navigation.navigate("PlaylistDetail", { idPlaylist: idPlaylist })
     };
 
     componentDidMount() {
@@ -31,20 +31,18 @@ export default class Home extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text
-                    style={styles.title}
-                    onPress={() => this.loadPlaylist()}
-                >
+                <Text style={styles.title}>
                     Editor's picks
                 </Text>
 
                 <View style={styles.playlistContainer}>
+
                     <FlatList
                         data={this.state.playlists}
                         style={styles.listItem}
                         numColumns={2}
                         keyExtractor={(item) => item.id.toString()}
-                        renderItem={({item}) =>
+                        renderItem={({ item }) =>
                             <PlaylistItem
                                 key={item.id}
                                 playlist={item}
@@ -53,7 +51,7 @@ export default class Home extends React.Component {
                     />
                 </View>
 
-                <PlayerItem/>
+                <PlayerItem />
             </View>
         );
     }
@@ -73,6 +71,6 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     listItem: {
-        flexDirection: 'column'
+        flexDirection: 'row'
     }
 });

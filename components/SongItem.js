@@ -9,7 +9,7 @@ export default class SongItem extends Component {
             console.log("Playing song " + songUrl);
         }
 
-        var disabled = false;
+        let disabled = false;
         if (!song.track.preview_url) disabled = true;
 
         return (
