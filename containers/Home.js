@@ -13,45 +13,47 @@ export default class Home extends React.Component {
         }
     }
 
-    loadPlaylist() {
-        GetPlaylists().then(data => {
+    async loadPlaylist() {
+        await GetPlaylists().then(data => {
             this.setState({ playlists: data.playlists.items });
-        }
-        )
+        })
     }
 
-    displayPlaylist = (idPlaylist) => {
+    goToPlaylist = (idPlaylist) => {
         this.props.navigation.navigate("PlaylistDetail", { idPlaylist: idPlaylist })
-    };
+    }
 
     componentDidMount() {
         this.loadPlaylist()
     }
 
+    displayPlaylists = () => {
+        return <View style={styles.playlistContainer}>
+            {this.state.playlists.map(item => (
+                <PlaylistItem
+                    key={item.id}
+                    playlist={item}
+                    displayPlaylist={this.goToPlaylist}
+                />
+            ))}
+        </View>
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>
-                    Editor's picks
-                </Text>
-
-                <View style={styles.playlistContainer}>
-
-                    <FlatList
-                        data={this.state.playlists}
-                        style={styles.listItem}
-                        numColumns={2}
-                        keyExtractor={(item) => item.id.toString()}
-                        renderItem={({ item }) =>
-                            <PlaylistItem
-                                key={item.id}
-                                playlist={item}
-                                displayPlaylist={this.displayPlaylist}
-                            />}
-                    />
+                <View>
+                    <Text style={styles.title}>
+                        Editor's picks
+                    </Text>
+                    <ScrollView contentContainerStyle={styles.scrollviewContainer}>
+                        {this.displayPlaylists()}
+                    </ScrollView>
                 </View>
 
-                <PlayerItem />
+                <View style={styles.playerContainer}>
+                    <PlayerItem />
+                </View>
             </View>
         );
     }
@@ -62,15 +64,28 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#000',
     },
+    playerContainer: {
+        position: 'absolute',
+        bottom: 0,
+        width: '100%',
+    },
+    scrollviewContainer: {
+        alignItems: 'center',
+    },
+    playlistContainer: {
+        justifyContent: 'center',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+    },
     title: {
         marginTop: '20%',
         color: '#fff',
         fontSize: 32
     },
-    playlistContainer: {
-        alignItems: 'center'
-    },
     listItem: {
         flexDirection: 'row'
+    },
+    error: {
+        color: '#fff'
     }
 });
