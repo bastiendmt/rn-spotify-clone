@@ -1,8 +1,8 @@
 import React from 'react';
 import {FlatList, StyleSheet, Text, View, Image, ScrollView} from "react-native";
 import {GetPlaylistDetail} from '../API'
-import SongItem from './SongItem'
-import PlayerItem from './PlayerItem'
+import SongItem from '../components/SongItem'
+import PlayerItem from '../components/PlayerItem'
 
 export default class Playlist extends React.Component {
     constructor(props) {
