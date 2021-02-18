@@ -1,35 +1,33 @@
-import React, {Component} from 'react'
-import {TouchableOpacity, Text, StyleSheet} from 'react-native'
+import React, { Component } from 'react'
+import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 
-export default class SongItem extends Component {
-    render() {
-        const {song} = this.props;
+const SongItem = (props) => {
+    const { song } = props;
 
-        function playSound(songUrl) {
-            console.log("Playing song " + songUrl);
-        }
-
-        let disabled = false;
-        if (!song.track.preview_url) disabled = true;
-
-        return (
-            <TouchableOpacity
-                style={styles.item}
-                onPress={playSound(song.track.preview_url)}
-                disabled={disabled}
-            >
-
-                <Text style={[song.track.preview_url ? styles.preview : styles.noPreview]}>
-                    {song.track.name}
-                </Text>
-                <Text
-                    style={[song.track.preview_url ? styles.artist : styles.noPreview]}>
-                    {song.track.artists[0].name}
-                </Text>
-            </TouchableOpacity>
-        )
+    function playSound(songUrl) {
+        console.log("Playing song " + songUrl);
     }
+
+    let disabled = false;
+    if (!song.track.preview_url) disabled = true;
+
+    return <TouchableOpacity
+        style={styles.item}
+        onPress={playSound(song.track.preview_url)}
+        disabled={disabled}
+    >
+
+        <Text style={[song.track.preview_url ? styles.preview : styles.noPreview]}>
+            {song.track.name}
+        </Text>
+        <Text
+            style={[song.track.preview_url ? styles.artist : styles.noPreview]}>
+            {song.track.artists[0].name}
+        </Text>
+    </TouchableOpacity>
 }
+
+export default SongItem
 
 const styles = StyleSheet.create({
     item: {
