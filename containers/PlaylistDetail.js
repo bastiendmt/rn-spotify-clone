@@ -19,6 +19,15 @@ export default class Playlist extends React.Component {
         });
     }
 
+    formatFollowers = (num) => {
+        console.log(num);
+        let units = ["M", "B", "T", "Q"]
+        let unit = Math.floor((num / 1.0e+1).toFixed(0).toString().length)
+        let r = unit % 3
+        let x = Math.abs(Number(num)) / Number('1.0e+' + (unit - r)).toFixed(2)
+        return x.toFixed(2) + ' ' + units[Math.floor(unit / 3) - 2]
+    }
+
     displayPlaylistDetail() {
         if (this.state.playlist != undefined) {
             return (
@@ -37,7 +46,7 @@ export default class Playlist extends React.Component {
                         <Text style={styles.title}>{this.state.playlist.name}</Text>
                         <Text style={styles.author}>Playlist by {this.state.playlist.owner.display_name}</Text>
                         <Text style={styles.description}>{this.state.playlist.description}</Text>
-                        <Text style={styles.followers}>{this.state.playlist.followers.total} followers</Text>
+                        <Text style={styles.followers}>{this.formatFollowers(this.state.playlist.followers.total)} followers</Text>
                     </View>
                 </LinearGradient>
             )
