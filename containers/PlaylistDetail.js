@@ -1,6 +1,7 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View, Image, ScrollView} from "react-native";
-import {GetPlaylistDetail} from '../API'
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import { LinearGradient } from 'expo-linear-gradient'
+import { GetPlaylistDetail } from '../API'
 import SongItem from '../components/SongItem'
 import PlayerItem from '../components/PlayerItem'
 
@@ -14,17 +15,20 @@ export default class Playlist extends React.Component {
 
     componentDidMount() {
         GetPlaylistDetail(this.props.route.params.idPlaylist).then(data => {
-            this.setState({playlist: data})
+            this.setState({ playlist: data })
         });
     }
 
     displayPlaylistDetail() {
         if (this.state.playlist != undefined) {
             return (
-                <View style={styles.header}>
+                <LinearGradient
+                    style={styles.header}
+                    colors={['#000', '#006400']}
+                >
                     <View style={styles.imageContainer}>
                         <Image
-                            source={{uri: this.state.playlist.images[0].url}}
+                            source={{ uri: this.state.playlist.images[0].url }}
                             style={styles.image}
                         />
                     </View>
@@ -35,7 +39,7 @@ export default class Playlist extends React.Component {
                         <Text style={styles.description}>{this.state.playlist.description}</Text>
                         <Text style={styles.followers}>{this.state.playlist.followers.total} followers</Text>
                     </View>
-                </View>
+                </LinearGradient>
             )
         }
     }
@@ -45,7 +49,7 @@ export default class Playlist extends React.Component {
             return (
                 <ScrollView>
                     {this.state.playlist.tracks.items.map((item) => (
-                        <SongItem key={item.track.id} song={item}/>
+                        <SongItem key={item.track.id} song={item} />
                     ))}
                 </ScrollView>
             )
@@ -75,18 +79,21 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',
     },
     header: {
+        padding: 20,
         marginTop: 50,
-        flexDirection: 'row'
+        flexDirection: 'row',
+        borderBottomWidth: 1,
+        borderBottomColor: '#0F0'
     },
-    playerContainer : {
+    playerContainer: {
         position: 'absolute',
         bottom: 0,
-        width : '100%',
+        width: '100%',
     },
     image: {
         margin: 5,
-        width: 100,
-        height: 100,
+        width: 120,
+        height: 120,
     },
     imageContainer: {
         flex: 4,
