@@ -9,7 +9,9 @@ export default class Playlist extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            playlist: undefined
+            playlist: undefined,
+            song : undefined,
+            isPlaying : false
         }
     }
 
@@ -20,7 +22,6 @@ export default class Playlist extends React.Component {
     }
 
     formatFollowers = (num) => {
-        console.log(num);
         let units = ["M", "B", "T", "Q"]
         let unit = Math.floor((num / 1.0e+1).toFixed(0).toString().length)
         let r = unit % 3
@@ -53,18 +54,28 @@ export default class Playlist extends React.Component {
         }
     }
 
+    playSong = (song) => {
+        this.setState({song : song, isPlaying : true})
+    }
+
     displaySongs() {
         if (this.state.playlist != undefined) {
             return (
                 <ScrollView>
                     {this.state.playlist.tracks.items.map((item) => (
-                        <SongItem key={item.track.id} song={item} />
+                        <SongItem 
+                        key={item.track.id} 
+                        song={item} 
+                        handlePlaySong={() => (this.playSong(item))} />
                     ))}
                 </ScrollView>
             )
         } else {
             return (<Text>Aucun son trouvé</Text>)
         }
+    }
+    playPauseSong = () => {
+        this.setState({isPlaying : !this.state.isPlaying})
     }
 
     render() {
@@ -75,7 +86,7 @@ export default class Playlist extends React.Component {
                     {this.displaySongs()}
                 </View>
                 <View style={styles.playerContainer}>
-                    <PlayerItem />
+                    {this.state.song && <PlayerItem song={this.state.song} isPlaying={this.state.isPlaying} togglePlayPause={() => this.playPauseSong()} />}
                 </View>
             </View>
         );

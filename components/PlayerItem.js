@@ -1,9 +1,8 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet, View, Image } from 'react-native'
-import SongItem from './SongItem'
 
 const PlayerItem = (props) => {
-    const { song } = props;
+    const { song, togglePlayPause } = props;
 
     displaySongStatus = () => {
         let sourceImage = require('../assets/pause_white.png');
@@ -17,11 +16,14 @@ const PlayerItem = (props) => {
 
     return (
         <View style={styles.playerContainer}>
-            {/*<SongItem }/>*/}
-            <Text style={styles.songContainer}>A song playing</Text>
+            <View style={styles.songInfos}>
+                <Text style={styles.songContainer}>{song.track.name}</Text>
+                <Text style={styles.artistContainer}>{song.track.artists[0].name}</Text>
+            </View>
+
             <TouchableOpacity
                 style={styles.statusContainer}
-                onPress={() => { }}
+                onPress={togglePlayPause}
             >
                 {displaySongStatus()}
             </TouchableOpacity>
@@ -33,7 +35,7 @@ export default PlayerItem
 
 const styles = StyleSheet.create({
     playerContainer: {
-        height: 50,
+        height: 70,
         flex: 1,
         backgroundColor: '#000',
         flexDirection: 'row',
@@ -41,9 +43,17 @@ const styles = StyleSheet.create({
         borderTopWidth: 2,
         borderTopColor: '#1db954'
     },
+    songInfos : {
+        flex : 8,
+        flexWrap : 'wrap',
+        flexDirection : 'column'
+    },
     songContainer: {
-        flex: 8,
         color: '#fff',
+        marginLeft: 10
+    },
+    artistContainer : {
+        color: '#999',
         marginLeft: 10
     },
     statusContainer: {

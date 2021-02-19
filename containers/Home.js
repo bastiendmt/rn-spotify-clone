@@ -52,7 +52,7 @@ export default class Home extends React.Component {
                 </View>
 
                 <View style={styles.playerContainer}>
-                    <PlayerItem />
+                    {/* <PlayerItem /> */}
                 </View>
             </View>
         );
