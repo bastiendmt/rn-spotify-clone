@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { TouchableOpacity, Text, StyleSheet, View, Image } from 'react-native'
+import { Audio } from 'expo-av';
 
 const PlayerItem = (props) => {
-    const { song, togglePlayPause } = props;
+    const [sound, setSound] = React.useState();
+    const { song, togglePlayPause, isPlaying } = props;
+
+    console.log(song.track.preview_url);
 
     displaySongStatus = () => {
         let sourceImage = require('../assets/pause_white.png');
@@ -13,6 +17,52 @@ const PlayerItem = (props) => {
             <Image source={sourceImage} style={styles.statusIcon} />
         )
     }
+
+    async function loadSound() {
+        console.log('Loading Sound');
+        const { sound } = await Audio.Sound.createAsync(
+            { uri: song.track.preview_url }
+        );
+        setSound(sound);
+
+        console.log('playing sound')
+        await sound.playAsync();
+
+    }
+
+    async function playSound() {
+        console.log('playing sound')
+        await sound.playAsync();
+
+    }
+    async function pauseSound() {
+        console.log('sound paused')
+        await sound.pauseAsync()
+    }
+
+
+    useEffect(() => {
+        console.log('player mounted')
+        loadSound()
+    }, []);
+
+    useEffect(() => {
+        isPlaying ? {} : pauseSound()
+    }, [isPlaying])
+
+
+    useEffect(() => {
+        return sound
+            ? () => {
+                console.log('Unloading Sound');
+                sound.unloadAsync();
+            }
+            : undefined;
+    }, [sound]);
+
+
+
+
 
     return (
         <View style={styles.playerContainer}>
@@ -43,16 +93,16 @@ const styles = StyleSheet.create({
         borderTopWidth: 2,
         borderTopColor: '#1db954'
     },
-    songInfos : {
-        flex : 8,
-        flexWrap : 'wrap',
-        flexDirection : 'column'
+    songInfos: {
+        flex: 8,
+        flexWrap: 'wrap',
+        flexDirection: 'column'
     },
     songContainer: {
         color: '#fff',
         marginLeft: 10
     },
-    artistContainer : {
+    artistContainer: {
         color: '#999',
         marginLeft: 10
     },

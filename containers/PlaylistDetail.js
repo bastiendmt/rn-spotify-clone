@@ -86,7 +86,11 @@ export default class Playlist extends React.Component {
                     {this.displaySongs()}
                 </View>
                 <View style={styles.playerContainer}>
-                    {this.state.song && <PlayerItem song={this.state.song} isPlaying={this.state.isPlaying} togglePlayPause={() => this.playPauseSong()} />}
+                    {this.state.song && <PlayerItem 
+                    song={this.state.song} 
+                    isPlaying={this.state.isPlaying} 
+                    togglePlayPause={() => this.playPauseSong()} 
+                    isPlaying={this.state.isPlaying}/>}
                 </View>
             </View>
         );
