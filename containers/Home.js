@@ -1,8 +1,7 @@
 import React from 'react';
 import { GetPlaylists } from "../API";
-import { FlatList, StyleSheet, Text, View, ScrollView } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import PlaylistItem from "../components/PlaylistItem";
-import PlayerItem from "../components/PlayerItem";
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -42,7 +41,7 @@ export default class Home extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View>
+                <View style={{flex : 1}}>
                     <Text style={styles.title}>
                         Editor's picks
                     </Text>
@@ -71,7 +70,6 @@ const styles = StyleSheet.create({
     },
     scrollviewContainer: {
         alignItems: 'center',
-        marginTop: 32
     },
     playlistContainer: {
         justifyContent: 'center',
