@@ -54,10 +54,6 @@ export default class Playlist extends React.Component {
         }
     }
 
-    playSong = (song) => {
-        this.setState({song : song, isPlaying : true})
-    }
-
     displaySongs() {
         if (this.state.playlist != undefined) {
             return (
@@ -74,6 +70,11 @@ export default class Playlist extends React.Component {
             return (<Text>Aucun son trouvé</Text>)
         }
     }
+
+    playSong = (song) => {
+        this.setState({song : song, isPlaying : true})
+    }
+
     playPauseSong = () => {
         this.setState({isPlaying : !this.state.isPlaying})
     }

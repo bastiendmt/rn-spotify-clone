@@ -1,12 +1,11 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { TouchableOpacity, Text, StyleSheet, View, Image } from 'react-native'
 import { Audio } from 'expo-av';
+
 
 const PlayerItem = (props) => {
     const [sound, setSound] = React.useState();
     const { song, togglePlayPause, isPlaying } = props;
-
-    console.log(song.track.preview_url);
 
     displaySongStatus = () => {
         let sourceImage = require('../assets/pause_white.png');
@@ -19,50 +18,38 @@ const PlayerItem = (props) => {
     }
 
     async function loadSound() {
-        console.log('Loading Sound');
-        const { sound } = await Audio.Sound.createAsync(
-            { uri: song.track.preview_url }
-        );
+        const { sound } = await Audio.Sound.createAsync({ uri: song.track.preview_url });
         setSound(sound);
-
-        console.log('playing sound')
-        await sound.playAsync();
-
     }
 
     async function playSound() {
-        console.log('playing sound')
         await sound.playAsync();
-
     }
+
     async function pauseSound() {
-        console.log('sound paused')
         await sound.pauseAsync()
     }
 
-
     useEffect(() => {
-        console.log('player mounted')
+        // Playing new song OR loading sound
         loadSound()
-    }, []);
+    }, [song])
 
     useEffect(() => {
-        isPlaying ? {} : pauseSound()
-    }, [isPlaying])
-
+        // Play/Pause sound
+        sound ?
+            isPlaying ? playSound() : pauseSound()
+            : null
+    }, [isPlaying, sound])
 
     useEffect(() => {
+        //clearing sound
         return sound
             ? () => {
-                console.log('Unloading Sound');
                 sound.unloadAsync();
             }
             : undefined;
     }, [sound]);
-
-
-
-
 
     return (
         <View style={styles.playerContainer}>
