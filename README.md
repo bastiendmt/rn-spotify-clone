@@ -14,8 +14,11 @@ Projet réalisé dans le cadre d'un entretien d'embauche
 ## Captures d'écran
 
 ### Accueil
-![](images/home.png)
+![Home](images/home.jpg)
 
 
 ### Playlist
-![](images/playlist.png)
+![Playlist](images/playlist.jpg)
+
+### Demo
+![Demo](images/demo.gif)
