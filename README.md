@@ -1,5 +1,7 @@
-# rn-appstud-test
-Projet réalisé dans le cadre d'un entretien d'embauche
+# Spoti-like mobile
+A mobile app made during an interview process.
+
+See my web version on [spotify-like-web](https://github.com/Bastiendmt/spoti-like-web)
 
 ## Instalation
 
