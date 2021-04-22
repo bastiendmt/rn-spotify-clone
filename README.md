@@ -1,7 +1,7 @@
 # Spoti-like mobile
 A mobile app made during an interview process.
 
-See my web version on [spotify-like-web](https://github.com/Bastiendmt/spoti-like-web)
+See my web version on [spotify-like-web](https://github.com/Bastiendmt/spotify-like-web)
 
 ## Instalation
 
