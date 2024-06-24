@@ -11,5 +11,7 @@ await fetch('https://accounts.spotify.com/api/token', {
   },
   body: `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`,
 })
-  .then((response) => response.json().then((data) => console.log(data)))
+  .then((response) =>
+    response.json().then((data) => console.log(JSON.stringify(data)))
+  )
   .catch((error) => console.error(error));
