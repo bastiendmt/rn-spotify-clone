@@ -1,7 +1,7 @@
-import React from "react";
-import { GetPlaylists } from "../API";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
-import PlaylistItem from "../components/PlaylistItem";
+import React from 'react';
+import { GetPlaylists } from '../API';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import PlaylistItem from '../components/PlaylistItem';
 
 export default class Home extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ export default class Home extends React.Component {
   }
 
   goToPlaylist = (idPlaylist) => {
-    this.props.navigation.navigate("PlaylistDetail", {
+    this.props.navigation.navigate('PlaylistDetail', {
       idPlaylist: idPlaylist,
     });
   };
@@ -61,30 +61,30 @@ export default class Home extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: '#000',
   },
   playerContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
-    width: "100%",
+    width: '100%',
   },
   scrollviewContainer: {
-    alignItems: "center",
+    alignItems: 'center',
   },
   playlistContainer: {
-    justifyContent: "center",
-    flexDirection: "row",
-    flexWrap: "wrap",
+    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
   },
   title: {
     paddingTop: 32,
-    color: "#fff",
+    color: '#fff',
     fontSize: 32,
   },
   listItem: {
-    flexDirection: "row",
+    flexDirection: 'row',
   },
   error: {
-    color: "#fff",
+    color: '#fff',
   },
 });

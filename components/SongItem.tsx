@@ -1,5 +1,5 @@
-import React from "react";
-import { TouchableOpacity, Text, StyleSheet } from "react-native";
+import React from 'react';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
 const SongItem = (props) => {
   const { song, handlePlaySong } = props;
@@ -28,16 +28,16 @@ export default SongItem;
 
 const styles = StyleSheet.create({
   item: {
-    width: "100%",
+    width: '100%',
     margin: 10,
   },
   preview: {
-    color: "#fff",
+    color: '#fff',
   },
   noPreview: {
-    color: "#555",
+    color: '#555',
   },
   artist: {
-    color: "#999",
+    color: '#999',
   },
 });
