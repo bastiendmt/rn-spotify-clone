@@ -1,5 +1,5 @@
 const baseUrl = 'https://api.spotify.com';
-const accessToken = '';
+const accessToken = process.env.EXPO_PUBLIC_ACCESS_TOKEN;
 
 export async function GetPlaylists() {
   let url = baseUrl + '/v1/browse/featured-playlists';
