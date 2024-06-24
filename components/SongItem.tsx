@@ -1,23 +1,19 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 
-const SongItem = (props) => {
-  const { song, handlePlaySong } = props;
-
-  !song.track.preview_url ? (disabled = true) : (disabled = false);
+const SongItem = ({ song, handlePlaySong }) => {
+  const playable = song.track.preview_url;
 
   return (
     <TouchableOpacity
       style={styles.item}
       onPress={handlePlaySong}
-      disabled={disabled}
+      disabled={!playable}
     >
-      <Text
-        style={[song.track.preview_url ? styles.preview : styles.noPreview]}
-      >
+      <Text style={[playable ? styles.preview : styles.noPreview]}>
         {song.track.name}
       </Text>
-      <Text style={[song.track.preview_url ? styles.artist : styles.noPreview]}>
+      <Text style={[playable ? styles.artist : styles.noPreview]}>
         {song.track.artists[0].name}
       </Text>
     </TouchableOpacity>

@@ -1,18 +1,13 @@
-import React, { useEffect, useMemo } from "react";
-import { TouchableOpacity, Text, StyleSheet, View, Image } from "react-native";
-import { Audio } from "expo-av";
+import React, { useEffect, useState } from 'react';
+import { TouchableOpacity, Text, StyleSheet, View, Image } from 'react-native';
+import { Audio } from 'expo-av';
 
-const PlayerItem = (props) => {
-  const [sound, setSound] = React.useState();
-  const { song, togglePlayPause, isPlaying } = props;
+const PlayerItem = ({ song, togglePlayPause, isPlaying }) => {
+  const [sound, setSound] = useState<Audio.Sound>();
 
-  displaySongStatus = () => {
-    let sourceImage = require("../assets/pause_white.png");
-    if (!props.isPlaying) {
-      sourceImage = require("../assets/play_white.png");
-    }
-    return <Image source={sourceImage} style={styles.statusIcon} />;
-  };
+  const playingImage = isPlaying
+    ? require('../assets/pause_white.png')
+    : require('../assets/play_white.png');
 
   async function loadSound() {
     const { sound } = await Audio.Sound.createAsync({
@@ -59,7 +54,7 @@ const PlayerItem = (props) => {
         style={styles.statusContainer}
         onPress={togglePlayPause}
       >
-        {displaySongStatus()}
+        <Image source={playingImage} style={styles.statusIcon} />
       </TouchableOpacity>
     </View>
   );
@@ -71,28 +66,28 @@ const styles = StyleSheet.create({
   playerContainer: {
     height: 70,
     flex: 1,
-    backgroundColor: "#000",
-    flexDirection: "row",
-    alignItems: "center",
+    backgroundColor: '#000',
+    flexDirection: 'row',
+    alignItems: 'center',
     borderTopWidth: 2,
-    borderTopColor: "#1db954",
+    borderTopColor: '#1db954',
   },
   songInfos: {
     flex: 8,
-    flexWrap: "wrap",
-    flexDirection: "column",
+    flexWrap: 'wrap',
+    flexDirection: 'column',
   },
   songContainer: {
-    color: "#fff",
+    color: '#fff',
     marginLeft: 10,
   },
   artistContainer: {
-    color: "#999",
+    color: '#999',
     marginLeft: 10,
   },
   statusContainer: {
     flex: 2,
-    position: "absolute",
+    position: 'absolute',
     right: 10,
   },
   statusIcon: {

@@ -1,62 +1,51 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetPlaylists } from '../API';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import PlaylistItem from '../components/PlaylistItem';
 
-export default class Home extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playlists: [],
-      isPlaying: false,
-    };
-  }
+const Home = ({ navigation }) => {
+  const [playlists, setPlaylists] = useState([]);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  async loadPlaylist() {
+  async function loadPlaylist() {
     await GetPlaylists().then((data) => {
-      this.setState({ playlists: data.playlists.items });
+      setPlaylists(data.playlists.items);
     });
   }
 
-  goToPlaylist = (idPlaylist) => {
-    this.props.navigation.navigate('PlaylistDetail', {
+  const goToPlaylist = (idPlaylist) => {
+    navigation.navigate('PlaylistDetail', {
       idPlaylist: idPlaylist,
     });
   };
 
-  componentDidMount() {
-    this.loadPlaylist();
-  }
+  useEffect(() => {
+    loadPlaylist();
+  }, []);
 
-  displayPlaylists = () => {
-    return (
-      <View style={styles.playlistContainer}>
-        {this.state.playlists.map((item) => (
-          <PlaylistItem
-            key={item.id}
-            playlist={item}
-            displayPlaylist={this.goToPlaylist}
-          />
-        ))}
+  return (
+    <View style={styles.container}>
+      <View style={{ flex: 1 }}>
+        <Text style={styles.title}>Editor's picks</Text>
+        <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+          <View style={styles.playlistContainer}>
+            {playlists.map((item) => (
+              <PlaylistItem
+                key={item.id}
+                playlist={item}
+                displayPlaylist={goToPlaylist}
+              />
+            ))}
+          </View>
+        </ScrollView>
       </View>
-    );
-  };
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <View style={{ flex: 1 }}>
-          <Text style={styles.title}>Editor's picks</Text>
-          <ScrollView contentContainerStyle={styles.scrollviewContainer}>
-            {this.displayPlaylists()}
-          </ScrollView>
-        </View>
+      <View style={styles.playerContainer}>{/* <PlayerItem /> */}</View>
+    </View>
+  );
+};
 
-        <View style={styles.playerContainer}>{/* <PlayerItem /> */}</View>
-      </View>
-    );
-  }
-}
+export default Home;
 
 const styles = StyleSheet.create({
   container: {
@@ -68,13 +57,14 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
   },
-  scrollviewContainer: {
+  scrollViewContainer: {
     alignItems: 'center',
   },
   playlistContainer: {
     justifyContent: 'center',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    gap: 20,
   },
   title: {
     paddingTop: 32,

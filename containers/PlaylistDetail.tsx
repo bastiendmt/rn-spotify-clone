@@ -1,56 +1,48 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import { GetPlaylistDetail } from "../API";
-import SongItem from "../components/SongItem";
-import PlayerItem from "../components/PlayerItem";
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { GetPlaylistDetail } from '../API';
+import SongItem from '../components/SongItem';
+import PlayerItem from '../components/PlayerItem';
 
-export default class Playlist extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playlist: undefined,
-      song: undefined,
-      isPlaying: false,
-    };
-  }
+const Playlist = ({ navigation, route }) => {
+  const [playlist, setPlaylist] = useState();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [song, setSong] = useState(undefined);
 
-  componentDidMount() {
-    GetPlaylistDetail(this.props.route.params.idPlaylist).then((data) => {
-      this.setState({ playlist: data });
+  useEffect(() => {
+    GetPlaylistDetail(route.params.idPlaylist).then((data) => {
+      setPlaylist(data);
     });
-  }
+  });
 
-  formatFollowers = (num) => {
-    let units = ["K", "M", "B", "T", "Q"];
+  const formatFollowers = (num) => {
+    let units = ['K', 'M', 'B', 'T', 'Q'];
     let unit = Math.floor((num / 1.0e1).toFixed(0).toString().length);
     let r = unit % 3;
-    let x = Math.abs(Number(num)) / Number("1.0e+" + (unit - r)).toFixed(2);
-    return x.toFixed(2) + " " + units[Math.floor(unit / 3) - 1];
+    let x = Math.abs(Number(num)) / Number('1.0e+' + (unit - r)).toFixed(2);
+    return x.toFixed(2) + ' ' + units[Math.floor(unit / 3) - 1];
   };
 
-  displayPlaylistDetail() {
-    if (this.state.playlist != undefined) {
+  function displayPlaylistDetail() {
+    if (playlist) {
       return (
-        <LinearGradient style={styles.header} colors={["#000", "#006400"]}>
+        <LinearGradient style={styles.header} colors={['#000', '#006400']}>
           <View style={styles.imageContainer}>
             <Image
-              source={{ uri: this.state.playlist.images[0].url }}
+              source={{ uri: playlist.images[0].url }}
               style={styles.image}
             />
           </View>
 
           <View style={styles.infos}>
-            <Text style={styles.title}>{this.state.playlist.name}</Text>
+            <Text style={styles.title}>{playlist.name}</Text>
             <Text style={styles.author}>
-              Playlist by {this.state.playlist.owner.display_name}
+              Playlist by {playlist.owner.display_name}
             </Text>
-            <Text style={styles.description}>
-              {this.state.playlist.description}
-            </Text>
+            <Text style={styles.description}>{playlist.description}</Text>
             <Text style={styles.followers}>
-              {this.formatFollowers(this.state.playlist.followers.total)}{" "}
-              followers
+              {formatFollowers(playlist.followers.total)} followers
             </Text>
           </View>
         </LinearGradient>
@@ -58,70 +50,70 @@ export default class Playlist extends React.Component {
     }
   }
 
-  displaySongs() {
-    if (this.state.playlist != undefined) {
+  function displaySongs() {
+    if (playlist) {
       return (
         <ScrollView>
-          {this.state.playlist.tracks.items.map((item) => (
+          {playlist.tracks.items.map((item) => (
             <SongItem
               key={item.track.id}
               song={item}
-              handlePlaySong={() => this.playSong(item)}
+              handlePlaySong={() => playSong(item)}
             />
           ))}
         </ScrollView>
       );
-    } else {
-      return <Text>Aucun son trouvé</Text>;
     }
+    return <Text>Aucun son trouvé</Text>;
   }
 
-  playSong = (song) => {
-    this.setState({ song: song, isPlaying: true });
+  const playSong = (song) => {
+    setSong(song);
+    setIsPlaying(true);
   };
 
-  playPauseSong = () => {
-    this.setState({ isPlaying: !this.state.isPlaying });
+  const playPauseSong = () => {
+    setIsPlaying((prev) => !prev);
   };
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <View>
-          {this.displayPlaylistDetail()}
-          {this.displaySongs()}
-        </View>
-        <View style={styles.playerContainer}>
-          {this.state.song && (
-            <PlayerItem
-              song={this.state.song}
-              isPlaying={this.state.isPlaying}
-              togglePlayPause={() => this.playPauseSong()}
-              isPlaying={this.state.isPlaying}
-            />
-          )}
-        </View>
+  return (
+    <View style={styles.container}>
+      <View>
+        {displayPlaylistDetail()}
+        {displaySongs()}
       </View>
-    );
-  }
-}
+
+      <View style={styles.playerContainer}>
+        {song && (
+          <PlayerItem
+            song={song}
+            isPlaying={isPlaying}
+            togglePlayPause={() => playPauseSong()}
+          />
+        )}
+      </View>
+    </View>
+  );
+};
+
+export default Playlist;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: '#000',
   },
   header: {
     padding: 20,
     marginTop: 50,
-    flexDirection: "row",
+    flexDirection: 'row',
     borderBottomWidth: 1,
-    borderBottomColor: "#0F0",
+    borderBottomColor: '#0F0',
   },
   playerContainer: {
-    position: "absolute",
+    position: 'absolute',
     bottom: 0,
-    width: "100%",
+    width: '100%',
   },
   image: {
     margin: 5,
@@ -133,20 +125,20 @@ const styles = StyleSheet.create({
   },
   infos: {
     flex: 8,
-    flexDirection: "column",
+    flexDirection: 'column',
   },
   description: {
-    color: "#fff",
+    color: '#fff',
     marginTop: 10,
   },
   title: {
     fontSize: 24,
-    color: "#fff",
+    color: '#fff',
   },
   author: {
-    color: "#999",
+    color: '#999',
   },
   followers: {
-    color: "#999",
+    color: '#999',
   },
 });
