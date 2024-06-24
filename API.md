@@ -25,54 +25,55 @@ You will find the documentation for the API in this document. You can also use t
 - `offset`: Optional. The index of the first item to return. Default: 0 (the first object). Use with limit to get the next set of items.
 
 **Result preview**
+
 ```json
 {
-    "message": "Editor's picks",
-    "playlists": {
-        "href": "https://afternoon-waters-49321.herokuapp.com/v1/browse/featured-playlists?timestamp=2019-04-12T11%3A26%3A05&offset=0&limit=1",
-        "items": [
-            {
-                "collaborative": false,
-                "external_urls": {
-                    "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWXJfnUiYjUKT"
-                },
-                "href": "https://afternoon-waters-49321.herokuapp.com/v1/playlists/37i9dQZF1DWXJfnUiYjUKT",
-                "id": "37i9dQZF1DWXJfnUiYjUKT",
-                "images": [
-                    {
-                        "height": null,
-                        "url": "https://pl.scdn.co/images/pl/default/3a60cb6ef4035bdb483e62b081dcc1656f0b1b14",
-                        "width": null
-                    }
-                ],
-                "name": "New Music Friday",
-                "owner": {
-                    "display_name": "Spotify",
-                    "external_urls": {
-                        "spotify": "https://open.spotify.com/user/spotify"
-                    },
-                    "href": "https://afternoon-waters-49321.herokuapp.com/v1/users/spotify",
-                    "id": "spotify",
-                    "type": "user",
-                    "uri": "spotify:user:spotify"
-                },
-                "primary_color": null,
-                "public": null,
-                "snapshot_id": "MTU1NTA1OTY2MCwwMDAwMDBkMjAwMDAwMTZhMTBjNzU1M2YwMDAwMDE2YTBlMTE0OWIw",
-                "tracks": {
-                    "href": "https://afternoon-waters-49321.herokuapp.com/v1/playlists/37i9dQZF1DWXJfnUiYjUKT/tracks",
-                    "total": 100
-                },
-                "type": "playlist",
-                "uri": "spotify:playlist:37i9dQZF1DWXJfnUiYjUKT"
-            }
+  "message": "Editor's picks",
+  "playlists": {
+    "href": "https://afternoon-waters-49321.herokuapp.com/v1/browse/featured-playlists?timestamp=2019-04-12T11%3A26%3A05&offset=0&limit=1",
+    "items": [
+      {
+        "collaborative": false,
+        "external_urls": {
+          "spotify": "https://open.spotify.com/playlist/37i9dQZF1DWXJfnUiYjUKT"
+        },
+        "href": "https://afternoon-waters-49321.herokuapp.com/v1/playlists/37i9dQZF1DWXJfnUiYjUKT",
+        "id": "37i9dQZF1DWXJfnUiYjUKT",
+        "images": [
+          {
+            "height": null,
+            "url": "https://pl.scdn.co/images/pl/default/3a60cb6ef4035bdb483e62b081dcc1656f0b1b14",
+            "width": null
+          }
         ],
-        "limit": 1,
-        "next": "https://afternoon-waters-49321.herokuapp.com/v1/browse/featured-playlists?timestamp=2019-04-12T11%3A26%3A05&offset=1&limit=1",
-        "offset": 0,
-        "previous": null,
-        "total": 12
-    }
+        "name": "New Music Friday",
+        "owner": {
+          "display_name": "Spotify",
+          "external_urls": {
+            "spotify": "https://open.spotify.com/user/spotify"
+          },
+          "href": "https://afternoon-waters-49321.herokuapp.com/v1/users/spotify",
+          "id": "spotify",
+          "type": "user",
+          "uri": "spotify:user:spotify"
+        },
+        "primary_color": null,
+        "public": null,
+        "snapshot_id": "MTU1NTA1OTY2MCwwMDAwMDBkMjAwMDAwMTZhMTBjNzU1M2YwMDAwMDE2YTBlMTE0OWIw",
+        "tracks": {
+          "href": "https://afternoon-waters-49321.herokuapp.com/v1/playlists/37i9dQZF1DWXJfnUiYjUKT/tracks",
+          "total": 100
+        },
+        "type": "playlist",
+        "uri": "spotify:playlist:37i9dQZF1DWXJfnUiYjUKT"
+      }
+    ],
+    "limit": 1,
+    "next": "https://afternoon-waters-49321.herokuapp.com/v1/browse/featured-playlists?timestamp=2019-04-12T11%3A26%3A05&offset=1&limit=1",
+    "offset": 0,
+    "previous": null,
+    "total": 12
+  }
 }
 ```
 
@@ -87,6 +88,7 @@ You will find the documentation for the API in this document. You can also use t
 - `fields`: Optional. Filters for the query: a comma-separated list of the fields to return. If omitted, all fields are returned. For example, to get just the playlist’s description and URI: fields=description,uri
 
 **Result preview**
+
 ```json
 {
     collaborative	false

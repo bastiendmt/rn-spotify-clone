@@ -1,13 +1,16 @@
 # Spoti-like mobile
-A mobile app made during an interview process.
 
-See my web version on [spotify-like-web](https://github.com/Bastiendmt/spotify-like-web)
+A Spotify clone app made during an interview process.
 
-## Instalation
+See my web version on [Spotify-clone](https://github.com/bastiendmt/spotify-clone)
 
-`git clone https://gitlab.com/bastienxs/RN-player.git`
+## Installation
 
-`cd RN-player`
+Get an access token
+
+```sh
+deno run --allow-read --allow-net auth.js
+```
 
 `npm install`
 
@@ -16,11 +19,13 @@ See my web version on [spotify-like-web](https://github.com/Bastiendmt/spotify-l
 ## Captures d'écran
 
 ### Accueil
+
 ![Home](images/home.jpg)
 
-
 ### Playlist
+
 ![Playlist](images/playlist.jpg)
 
 ### Demo
+
 ![Demo](images/demo.gif)
