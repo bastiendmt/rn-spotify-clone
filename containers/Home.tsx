@@ -2,25 +2,23 @@ import React, { useEffect, useState } from 'react';
 import { GetPlaylists } from '../API';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import PlaylistItem from '../components/PlaylistItem';
+import { FeaturedPlaylists } from '../types';
 
 const Home = ({ navigation }) => {
-  const [playlists, setPlaylists] = useState([]);
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [playlists, setPlaylists] = useState<
+    FeaturedPlaylists['playlists']['items']
+  >([]);
 
-  async function loadPlaylist() {
-    await GetPlaylists().then((data) => {
-      setPlaylists(data.playlists.items);
-    });
-  }
-
-  const goToPlaylist = (idPlaylist) => {
+  const goToPlaylist = (idPlaylist: string) => {
     navigation.navigate('PlaylistDetail', {
       idPlaylist: idPlaylist,
     });
   };
 
   useEffect(() => {
-    loadPlaylist();
+    GetPlaylists().then((data) => {
+      setPlaylists(data.playlists.items);
+    });
   }, []);
 
   return (

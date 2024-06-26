@@ -4,11 +4,21 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { GetPlaylistDetail } from '../API';
 import SongItem from '../components/SongItem';
 import PlayerItem from '../components/PlayerItem';
+import { PlaylistDetail, Song } from '../types';
 
-const Playlist = ({ navigation, route }) => {
-  const [playlist, setPlaylist] = useState();
+const Playlist = ({ route }) => {
+  const [playlist, setPlaylist] = useState<PlaylistDetail>();
   const [isPlaying, setIsPlaying] = useState(false);
-  const [song, setSong] = useState(undefined);
+  const [song, setSong] = useState<Song>(undefined);
+
+  const playSong = (song: Song) => {
+    setSong(song);
+    setIsPlaying(true);
+  };
+
+  const playPauseSong = () => {
+    setIsPlaying((prev) => !prev);
+  };
 
   useEffect(() => {
     GetPlaylistDetail(route.params.idPlaylist).then((data) => {
@@ -16,11 +26,11 @@ const Playlist = ({ navigation, route }) => {
     });
   });
 
-  const formatFollowers = (num) => {
+  const formatFollowers = (num: number) => {
     let units = ['K', 'M', 'B', 'T', 'Q'];
     let unit = Math.floor((num / 1.0e1).toFixed(0).toString().length);
     let r = unit % 3;
-    let x = Math.abs(Number(num)) / Number('1.0e+' + (unit - r)).toFixed(2);
+    let x = Math.abs(Number(num)) / Number('1.0e+' + (unit - r));
     return x.toFixed(2) + ' ' + units[Math.floor(unit / 3) - 1];
   };
 
@@ -67,15 +77,6 @@ const Playlist = ({ navigation, route }) => {
     return <Text>Aucun son trouvé</Text>;
   }
 
-  const playSong = (song) => {
-    setSong(song);
-    setIsPlaying(true);
-  };
-
-  const playPauseSong = () => {
-    setIsPlaying((prev) => !prev);
-  };
-
   return (
     <View style={styles.container}>
       <View>
@@ -88,7 +89,7 @@ const Playlist = ({ navigation, route }) => {
           <PlayerItem
             song={song}
             isPlaying={isPlaying}
-            togglePlayPause={() => playPauseSong()}
+            togglePlayPause={playPauseSong}
           />
         )}
       </View>
